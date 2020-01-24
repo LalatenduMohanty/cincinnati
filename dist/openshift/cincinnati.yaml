@@ -69,8 +69,6 @@ objects:
                 "--status.port", "${GB_STATUS_PORT}",
                 "--upstream.registry.url", "$(REGISTRY)",
                 "--upstream.registry.repository", "$(REPOSITORY)",
-                "--upstream.registry.credentials_path", "/etc/secrets/registry-credentials",
-                "--upstream.registry.fetch_concurrency", "${GB_UPSTREAM_FETCH_CONCURRENCY}",
               ]
               ports:
                 - name: graph-builder
@@ -98,10 +96,6 @@ objects:
                 requests:
                   cpu: ${GB_CPU_REQUEST}
                   memory: ${GB_MEMORY_REQUEST}
-              volumeMounts:
-                - name: secrets
-                  mountPath: /etc/secrets
-                  readOnly: true
             - image: ${IMAGE}:${IMAGE_TAG}
               name: cincinnati-policy-engine
               imagePullPolicy: Always
@@ -161,10 +155,6 @@ objects:
                 requests:
                   cpu: ${PE_CPU_REQUEST}
                   memory: ${PE_MEMORY_REQUEST}
-          volumes:
-            - name: secrets
-              secret:
-                secretName: cincinnati-registry-credentials
       triggers:
         - type: ConfigChange
   - apiVersion: v1
@@ -225,7 +215,7 @@ parameters:
     displayName: cincinnati image
     description: cincinnati docker image. Defaults to quay.io/app-sre/cincinnati
   - name: IMAGE_TAG
-    value: "latest"
+    value: "1b2c529"
     displayName: cincinnati version
     description: cincinnati version which defaults to latest
   - name: GB_MEMORY_LIMIT
