@@ -16,7 +16,7 @@ futures = "^0.3"
 hyper = "^0.14"
 lazy_static = "^1.2.0"
 log = "^0.4.3"
-openapiv3 = "0.3"
+openapiv3 = "0.4"
 prometheus = "0.12"
 semver = { version = "^0.11", features = [ "serde" ] }
 serde = "^1.0.70"
@@ -28,13 +28,13 @@ toml = "^0.5"
 url = "^2.2"
 tempfile = "^3.1.0"
 custom_debug_derive = "^0.5"
-opentelemetry = "0.4.0"
+opentelemetry = "0.13.0"
 actix-service = "2.0.0-beta.4"
 
 [build-dependencies]
-built = "^0.3.2"
+built = { version = "^0.4.4", features = [ "git2" ]}
 
 [dev-dependencies]
 tokio = { version = "1.5", features = [ "rt-multi-thread" ] }
 twoway = "^0.2"
-mockito = "^0.29.0"
+mockito = "^0.30.0"
